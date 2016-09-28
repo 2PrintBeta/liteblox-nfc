@@ -1,4 +1,4 @@
-package com.2printbeta.nfc.plugin;
+package com.twoprintbeta.nfc.plugin;
 
 import android.nfc.NdefMessage;
 import android.nfc.NdefRecord;
