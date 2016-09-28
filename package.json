@@ -1,0 +1,29 @@
+{
+  "name": "liteblox-nfc",
+  "version": "0.0.1",
+  "description": "Near Field Communication (NFC) Plugin. Read and write NDEF messages to NFC tags and share NDEF messages with peers.",
+  "cordova": {
+    "id": "phonegap-nfc",
+    "platforms": [
+      "android"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/2printbeta/liteblox-nfc.git"
+  },
+  "keywords": [
+    "nfc",
+    "ndef",
+    "ecosystem:cordova",
+    "cordova",
+    "cordova-android",
+    "liteblox"
+  ],
+  "author": "Dominik Wenger <wenger@2printbeta.de>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/2printbeta/liteblox-nfc/issues"
+  },
+  "homepage": "https://github.com/2printbeta/liteblox-nfc#readme"
+}

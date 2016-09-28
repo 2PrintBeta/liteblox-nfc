@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<plugin
+    xmlns="http://www.phonegap.com/ns/plugins/1.0"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    id="liteblox-nfc"
+    version="0.6.6">
+
+    <name>NFC</name>
+
+    <description>Near Field Communication (NFC) Plugin. Read NDEF messages Liteblox devices.</description>
+
+    <license>MIT</license>
+    <keywords>nfc, NFC, NDEF</keywords>
+    <repo>https://github.com/2printbeta/liteblox-nfc.git</repo>
+    <issue>https://github.com/2printbeta/liteblox-nfc/issues</issue>
+
+    <platform name="android">
+        <js-module src="www/liteblox-nfc.js" name="NFC">
+            <runs />
+        </js-module>
+
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="NfcPlugin">
+                <param name="android-package" value="com.2printbeta.nfc.plugin.NfcPlugin"/>
+                <param name="onload" value="true" />
+            </feature>
+        </config-file>
+
+        <source-file src="src/android/src/com/2printbeta/nfc/plugin/NfcPlugin.java"
+            target-dir="src/com/2printbeta/nfc/plugin"/>
+        <source-file src="src/android/src/com/2printbeta/nfc/plugin/Util.java"
+            target-dir="src/com/2printbeta/nfc/plugin"/>
+
+        <config-file target="AndroidManifest.xml" parent="/manifest">
+            <uses-permission android:name="android.permission.NFC"/>
+            <uses-feature android:name="android.hardware.nfc" android:required="true"/>
+        </config-file>
+
+    </platform>
+
+
+
+</plugin>
