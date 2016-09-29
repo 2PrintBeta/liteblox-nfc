@@ -237,7 +237,8 @@ public class NfcPlugin extends CordovaPlugin implements NfcAdapter.ReaderCallbac
         JSONObject json = Util.ndefToJSON(ndef);
 		try {
 			json.put("ndefMessage", Util.messageToJSON(message)); // make sure new message is in json
-		} catch (JSONException e) {
+		}
+		catch (JSONException e) {
             // shouldn't happen
             Log.e(Util.TAG, "Failed to convert ndefMessage into json", e);
         }
@@ -245,7 +246,7 @@ public class NfcPlugin extends CordovaPlugin implements NfcAdapter.ReaderCallbac
         // ndef and messages are null for ndef format-able
         if (ndef == null && message != null) {
 
-          
+            try {
                 json.put("ndefMessage", Util.messageToJSON(message));
                 // guessing type, would prefer a more definitive way to determine type
                 json.put("type", "NDEF Push Protocol");
