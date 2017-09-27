@@ -38,7 +38,7 @@
 
     </platform>
 	<platform name="ios">
-        <js-module src="www/phonegap-nfc.js" name="NFC">
+        <js-module src="www/liteblox-nfc.js" name="NFC">
             <runs />
         </js-module>
 
