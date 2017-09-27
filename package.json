@@ -6,6 +6,7 @@
     "id": "phonegap-nfc",
     "platforms": [
       "android"
+	  "ios"
     ]
   },
   "repository": {
@@ -18,6 +19,7 @@
     "ecosystem:cordova",
     "cordova",
     "cordova-android",
+	"cordova-ios",
     "liteblox"
   ],
   "author": "Dominik Wenger <wenger@2printbeta.de>",

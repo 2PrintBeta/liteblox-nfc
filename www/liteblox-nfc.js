@@ -412,13 +412,70 @@ var ndef = {
 // nfc provides javascript wrappers to the native phonegap implementation
 var nfc = {
 
+    addTagDiscoveredListener: function (callback, win, fail) {
+        document.addEventListener("tag", callback, false);
+        cordova.exec(win, fail, "NfcPlugin", "registerTag", []);
+    },
+
+    addMimeTypeListener: function (mimeType, callback, win, fail) {
+        document.addEventListener("ndef-mime", callback, false);
+        cordova.exec(win, fail, "NfcPlugin", "registerMimeType", [mimeType]);
+    },
+
     addNdefListener: function (callback, win, fail) {
         document.addEventListener("ndef", callback, false);
         cordova.exec(win, fail, "NfcPlugin", "registerNdef", []);
     },
 
+    addNdefFormatableListener: function (callback, win, fail) {
+        document.addEventListener("ndef-formatable", callback, false);
+        cordova.exec(win, fail, "NfcPlugin", "registerNdefFormatable", []);
+    },
+
+    write: function (ndefMessage, win, fail) {
+        cordova.exec(win, fail, "NfcPlugin", "writeTag", [ndefMessage]);
+    },
+
+    makeReadOnly: function (win, fail) {
+        cordova.exec(win, fail, "NfcPlugin", "makeReadOnly", []);
+    },
+
+    share: function (ndefMessage, win, fail) {
+        cordova.exec(win, fail, "NfcPlugin", "shareTag", [ndefMessage]);
+    },
+
+    unshare: function (win, fail) {
+        cordova.exec(win, fail, "NfcPlugin", "unshareTag", []);
+    },
+
+    handover: function (uris, win, fail) {
+        // if we get a single URI, wrap it in an array
+        if (!Array.isArray(uris)) {
+            uris = [ uris ];
+        }
+        cordova.exec(win, fail, "NfcPlugin", "handover", uris);
+    },
+
+    stopHandover: function (win, fail) {
+        cordova.exec(win, fail, "NfcPlugin", "stopHandover", []);
+    },
+
+    erase: function (win, fail) {
+        cordova.exec(win, fail, "NfcPlugin", "eraseTag", [[]]);
+    },
+
     enabled: function (win, fail) {
         cordova.exec(win, fail, "NfcPlugin", "enabled", [[]]);
+    },
+
+    removeTagDiscoveredListener: function (callback, win, fail) {
+        document.removeEventListener("tag", callback, false);
+        cordova.exec(win, fail, "NfcPlugin", "removeTag", []);
+    },
+
+    removeMimeTypeListener: function(mimeType, callback, win, fail) {
+        document.removeEventListener("ndef-mime", callback, false);
+        cordova.exec(win, fail, "NfcPlugin", "removeMimeType", [mimeType]);
     },
 
     removeNdefListener: function (callback, win, fail) {
@@ -428,6 +485,16 @@ var nfc = {
 
     showSettings: function (win, fail) {
         cordova.exec(win, fail, "NfcPlugin", "showSettings", []);
+    },
+
+    // iOS only
+    beginSession: function (win, fail) {
+        cordova.exec(win, fail, "NfcPlugin", "beginSession", []);
+    },
+
+    // iOS only
+    invalidateSession: function (win, fail) {
+        cordova.exec(win, fail, "NfcPlugin", "invalidateSession", []);
     }
 
 };
@@ -655,7 +722,7 @@ var uriHelper = {
     }
 };
 
-// added since WP8 must call a named function
+// added since WP8 must call a named function, also used by iOS
 // TODO consider switching NFC events from JS events to using the PG callbacks
 function fireNfcTagEvent(eventType, tagAsJson) {
     setTimeout(function () {
