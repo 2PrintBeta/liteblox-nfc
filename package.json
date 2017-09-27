@@ -5,7 +5,7 @@
   "cordova": {
     "id": "phonegap-nfc",
     "platforms": [
-      "android"
+      "android",
 	  "ios"
     ]
   },
